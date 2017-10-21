@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+
+<h1>BBC Headlines</h1>
+
+
+{% for article in feed %}
+<div>
+    <strong>{{ article.title }}</strong> <br>
+    <em>{{ article.published }}</em> <br>
+    <p>{{ article.summary }}</p>
+    <hr>
+</div>
+{% endfor %}
+
+{% endblock %}
