@@ -4,14 +4,14 @@
 
 {% block body %}
 
-<h1>BBC Headlines</h1>
+<h1>Headlines</h1>
 
 
-{% for article in feed %}
+{% for article in articles %}
 <div>
     <strong>{{ article.title }}</strong> <br>
-    <em>{{ article.published }}</em> <br>
-    <p>{{ article.summary }}</p>
+    <em>{{ article.publishedAt }}</em> <br>
+    <p>{{ article.description }}</p>
     <hr>
 </div>
 {% endfor %}
