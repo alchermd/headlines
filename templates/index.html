@@ -4,14 +4,14 @@
 
 {% block body %}
 
-<h1>BBC Headlines</h1>
+<h1>{{ source.upper() }} Headlines</h1>
 
 
 {% for article in articles %}
 <div>
-    <strong>{{ article.title }}</strong> <br>
-    <em>{{ article.publishedAt }}</em> <br>
-    <p>{{ article.description }}</p>
+    <strong>{{ article.title or 'No Title' }}</strong> <br>
+    <em>{{ article.publishedAt  or 'No Publishing Date' }}</em> <br>
+    <p>{{ article.description   or 'No Summary' }}</p>
     <hr>
 </div>
 {% endfor %}
