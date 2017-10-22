@@ -4,6 +4,7 @@
     ~~~~~~~~~
 
     A Flask powered news aggregation web app.
+    
     :copyright: (c) 2017, John Alcher
     :license: MIT, see LICENSE for more info.
 """
