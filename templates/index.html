@@ -6,6 +6,8 @@
 
 <h1>{{ source.upper() }} Headlines</h1>
 
+
+<!-- WEATHER SEARCH & DATA -->
 <hr>
 
 <h2>Current Weather</h2>
@@ -19,6 +21,31 @@
 
 <hr>
 
+
+<!-- FOREX SEARCH & DATA -->
+
+<h2>Forex</h2>
+<p> 1 {{ currency_from }} = {{ currency_to }} {{ rate }}</p>
+
+<form action="/" method="get">
+    <select name="currency_from">
+        {% for curr in currencies %}
+        <option value="{{ curr }}" {{ 'selected' if curr == currency_from }}>{{ curr }}</option>
+        {% endfor %}
+    </select>
+    <select name="currency_to">
+        {% for curr in currencies %}
+        <option value="{{ curr }}" {{ 'selected' if curr == currency_to }}>{{ curr }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Submit">
+</form>
+
+<hr>
+
+
+<!-- NEWS SEARCH -->
+
 <h2>Search News Sources</h2>
 <form action="/" method="get">
     <input type="text" name="source" placeholder="News Source (ex: cnn, bbc)" required>
@@ -26,6 +53,9 @@
 </form>
 
 <hr>
+
+
+<!-- NEWS DATA -->
 
 {% for article in articles %}
 <div>
