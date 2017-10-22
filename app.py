@@ -1,6 +1,7 @@
+import datetime
 import json
 import requests
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response
 from urllib.request import quote, urlopen
 
 app = Flask(__name__, instance_relative_config=True)
@@ -58,31 +59,41 @@ def get_rate(frm, to):
     return (to_rate / frm_rate, parsed.keys())
 
 
+def get_value(key):
+    if request.args.get(key):
+        return request.args.get(key)
+    else:
+        return request.cookies.get(key) or DEFAULTS[key]
+
+
 @app.route("/")
 def index():
     # Get customized news headlines.
-    source = request.args.get("source")
-    if source is None or source.lower() not in sources.keys():
-        source = DEFAULTS["source"]
-    else:
-        source = source.lower()
+    source = get_value("source")
     articles = get_news(source)
 
-    # Get customized weather info.
-    city = request.args.get("city")
-    if city is None:
-        city = DEFAULTS["city"]
+    # Get customized weather info. 
+    city = get_value("city")
+    print("City is " + str(city))
     weather = get_weather(city)
 
     # Get customized rate info.
-    currency_from = request.args.get("currency_from") or DEFAULTS["currency_from"]
-    currency_to = request.args.get("currency_to") or DEFAULTS["currency_to"]
+    currency_from, currency_to = get_value("currency_from"), get_value("currency_to")
     rate, currencies = get_rate(currency_from, currency_to)
 
-    return render_template("index.html", articles=articles,
+    # Set cookies.
+    response = make_response(render_template("index.html", articles=articles,
                            source=source, weather=weather,
                            currency_from=currency_from, currency_to=currency_to,
-                           rate=rate, currencies=currencies)
+                           rate=rate, currencies=currencies))
+
+    expires= datetime.datetime.now() + datetime.timedelta(days=365)
+    response.set_cookie("source", source, expires=expires)
+    response.set_cookie("city", city, expires=expires)
+    response.set_cookie("currency_from", currency_from, expires=expires)
+    response.set_cookie("currency_to", currency_to, expires=expires)
+
+    return response
 
 
 if __name__ == "__main__":
