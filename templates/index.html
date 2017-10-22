@@ -7,6 +7,15 @@
 <h1>{{ source.upper() }} Headlines</h1>
 
 
+<hr>
+
+<form action="/" method="get">
+    <input type="text" name="source" placeholder="News Source (ex: cnn, bbc)" required>
+    <input type="submit" value="Search">
+</form>
+
+<hr>
+
 {% for article in articles %}
 <div>
     <strong><a href="{{ article.url }}" target="_blank">{{ article.title or 'No Title' }}</a></strong> <br>
