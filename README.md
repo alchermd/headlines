@@ -47,7 +47,7 @@ $ cd headlines
 
     ```bash
     $ export FLASK_APP=headlines
-    $ export DEBUG=1
+    $ export FLASK_DEBUG=1
     ```
 
     4. Run the app with `flask run`.
