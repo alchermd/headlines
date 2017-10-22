@@ -1,0 +1,17 @@
+<div class="row align-items-center">
+    {% for article in articles %}
+        <div class="col-md-4 text-center">
+            <div class="card">
+                {% if article.urlToImage %}
+                <img class="card-img-top img-fluid" src="{{ article.urlToImage }}" alt="{{ article.description }}"> 
+                {% endif %}
+                <div class="card-body">
+                    <p><strong>{{ article.title or 'No Title' }}</strong></p>
+                    <p><em>{{ article.publishedAt  or 'No Publishing Date' }}</em> </p>
+                    <p>{{ article.description   or 'No Summary' }}</p>
+                    <a class="btn btn-primary" href="{{ article.url }}" target="_blank">Read Article</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

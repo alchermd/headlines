@@ -1,0 +1,13 @@
+<div class="col-md-4">
+    <h2>Current Weather</h2>
+    <p>
+        {{ weather.city }}, {{ weather.country }} | {{ weather.temperature }}&#8457 | <em>{{ weather.description }}</em>
+    </p>
+
+    <form action="/" method="get">
+        <div class="input-group">
+            <input class="form-control" type="text" name="city" placeholder="Current City (ex. London)" required>
+            <input class="btn btn-primary" type="submit" value="Search">
+        </div>
+    </form>
+</div>
