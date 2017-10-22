@@ -9,7 +9,10 @@
 
 {% for article in articles %}
 <div>
-    <strong>{{ article.title or 'No Title' }}</strong> <br>
+    <strong><a href="{{ article.url }}" target="_blank">{{ article.title or 'No Title' }}</a></strong> <br>
+    {% if article.urlToImage %}
+    <img src="{{ article.urlToImage }}" alt="{{ article.description }}"> <br>
+    {% endif %}
     <em>{{ article.publishedAt  or 'No Publishing Date' }}</em> <br>
     <p>{{ article.description   or 'No Summary' }}</p>
     <hr>
