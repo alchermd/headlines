@@ -6,13 +6,13 @@ from flask import render_template, make_response
 
 @app.route("/")
 def index():
+    """ The index page. """
     # Get customized news headlines.
     source = get_value("source")
     articles = get_news(source)
 
     # Get customized weather info. 
     city = get_value("city")
-    print("City is " + str(city))
     weather = get_weather(city)
 
     # Get customized rate info.
