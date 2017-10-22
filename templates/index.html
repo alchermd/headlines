@@ -4,69 +4,78 @@
 
 {% block body %}
 
-<h1>{{ source.upper() }} Headlines</h1>
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1 class="display-3">HEADLINES</h1>
+        <p class="lead">Get your daily dose of news from around the world</p>
+        <hr class="my-4">
+        
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Current Weather</h2>
+                <p>
+                    {{ weather.city }}, {{ weather.country }} | {{ weather.temperature }}&#8457 | <em>{{ weather.description }}</em>
+                </p>
 
+                <form action="/" method="get">
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="city" placeholder="Current City (ex. London)" required>
+                        <input class="btn btn-primary" type="submit" value="Search">
+                    </div>
+                </form>
+            </div>
+            
+            <div class="col-md-4">
+                <h2>Forex</h2>
+                <p> <strong>1 {{ currency_from }}</strong> = <strong>{{ currency_to }} {{ rate }}</strong></p>
+                <form action="/" method="get">
+                    <div class="input-group">
+                        <select class="form-control" name="currency_from">
+                            {% for curr in currencies %}
+                            <option value="{{ curr }}" {{ 'selected' if curr == currency_from }}>{{ curr }}</option>
+                            {% endfor %}
+                        </select>
+                        <select class="form-control"  name="currency_to">
+                            {% for curr in currencies %}
+                            <option value="{{ curr }}" {{ 'selected' if curr == currency_to }}>{{ curr }}</option>
+                            {% endfor %}
+                        </select>
+                        <input class="btn btn-primary" type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
 
-<!-- WEATHER SEARCH & DATA -->
-<hr>
-
-<h2>Current Weather</h2>
-<p>City: <strong>{{ weather.city }}, {{ weather.country }}</strong></p>
-<p><strong>{{ weather.temperature }}&#8457</strong> | <em>{{ weather.description }}</em> </p>
-
-<form action="/" method="get">
-    <input type="text" name="city" placeholder="Current City (ex. London)" required>
-    <input type="submit" value="Search">
-</form>
-
-<hr>
-
-
-<!-- FOREX SEARCH & DATA -->
-
-<h2>Forex</h2>
-<p> 1 {{ currency_from }} = {{ currency_to }} {{ rate }}</p>
-
-<form action="/" method="get">
-    <select name="currency_from">
-        {% for curr in currencies %}
-        <option value="{{ curr }}" {{ 'selected' if curr == currency_from }}>{{ curr }}</option>
-        {% endfor %}
-    </select>
-    <select name="currency_to">
-        {% for curr in currencies %}
-        <option value="{{ curr }}" {{ 'selected' if curr == currency_to }}>{{ curr }}</option>
-        {% endfor %}
-    </select>
-    <input type="submit" value="Submit">
-</form>
-
-<hr>
-
-
-<!-- NEWS SEARCH -->
-
-<h2>Search News Sources</h2>
-<form action="/" method="get">
-    <input type="text" name="source" placeholder="News Source (ex: cnn, bbc)" required>
-    <input type="submit" value="Search">
-</form>
-
-<hr>
-
-
-<!-- NEWS DATA -->
-
-{% for article in articles %}
-<div>
-    <strong><a href="{{ article.url }}" target="_blank">{{ article.title or 'No Title' }}</a></strong> <br>
-    {% if article.urlToImage %}
-    <img src="{{ article.urlToImage }}" alt="{{ article.description }}"> <br>
-    {% endif %}
-    <em>{{ article.publishedAt  or 'No Publishing Date' }}</em> <br>
-    <p>{{ article.description   or 'No Summary' }}</p>
-    <hr>
+            <div class="col-md-4">                 
+                <h2>News Source</h2>
+                <p><strong>{{ source.upper() }}</strong></p>
+                <form action="/" method="get">
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="source" placeholder="News Source (ex: cnn, bbc)" required>
+                        <input class="btn btn-primary" type="submit" value="Change">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-{% endfor %}
 
+<div class="container-fluid">
+    <div class="row align-items-center">
+    {% for article in articles %}
+        <div class="col-md-4 text-center">
+            <div class="card">
+                {% if article.urlToImage %}
+                <img class="card-img-top img-fluid" src="{{ article.urlToImage }}" alt="{{ article.description }}"> 
+                {% endif %}
+                <div class="card-body">
+                    <p><strong>{{ article.title or 'No Title' }}</strong></p>
+                    <p><em>{{ article.publishedAt  or 'No Publishing Date' }}</em> </p>
+                    <p>{{ article.description   or 'No Summary' }}</p>
+                    <a class="btn btn-primary" href="{{ article.url }}" target="_blank">Read Article</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
 {% endblock %}
