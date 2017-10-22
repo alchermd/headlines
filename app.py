@@ -14,7 +14,9 @@ sources = {
 
 DEFAULTS = {
     "source": "bbc",
-    "city": "Malolos"
+    "city": "Malolos",
+    "currency_from": "USD",
+    "currency_to": "PHP"
 }
 
 
@@ -44,6 +46,18 @@ def get_weather(city):
     return weather
 
 
+def get_rate(frm, to):
+    # Load rate data.
+    api_url = f"https://openexchangerates.org/api/latest.json?app_id={app.config['RATES_API_KEY']}"
+    all_currency = urlopen(api_url).read()
+    parsed = json.loads(all_currency).get("rates")
+    
+    # Get the appropriate conversion.
+    frm_rate = parsed.get(frm.upper())
+    to_rate = parsed.get(to.upper())
+    return (to_rate / frm_rate, parsed.keys())
+
+
 @app.route("/")
 def index():
     # Get customized news headlines.
@@ -60,8 +74,15 @@ def index():
         city = DEFAULTS["city"]
     weather = get_weather(city)
 
+    # Get customized rate info.
+    currency_from = request.args.get("currency_from") or DEFAULTS["currency_from"]
+    currency_to = request.args.get("currency_to") or DEFAULTS["currency_to"]
+    rate, currencies = get_rate(currency_from, currency_to)
+
     return render_template("index.html", articles=articles,
-                           source=source, weather=weather)
+                           source=source, weather=weather,
+                           currency_from=currency_from, currency_to=currency_to,
+                           rate=rate, currencies=currencies)
 
 
 if __name__ == "__main__":
