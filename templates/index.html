@@ -6,9 +6,20 @@
 
 <h1>{{ source.upper() }} Headlines</h1>
 
+<hr>
+
+<h2>Current Weather</h2>
+<p>City: <strong>{{ weather.city }}</strong></p>
+<p><strong>{{ weather.temperature }}&#8457</strong> | <em>{{ weather.description }}</em> </p>
+
+<form action="/" method="get">
+    <input type="text" name="city" placeholder="Current City (ex. London)" required>
+    <input type="submit" value="Search">
+</form>
 
 <hr>
 
+<h2>Search News Sources</h2>
 <form action="/" method="get">
     <input type="text" name="source" placeholder="News Source (ex: cnn, bbc)" required>
     <input type="submit" value="Search">
