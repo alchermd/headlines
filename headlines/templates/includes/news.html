@@ -3,7 +3,11 @@
     <p><strong>{{ source.upper() }}</strong></p>
     <form action="/" method="get">
         <div class="input-group">
-            <input class="form-control" type="text" name="source" placeholder="News Source (ex: cnn, bbc)" required>
+            <select class="form-control" name="source">
+                {% for current_source in SOURCES %}
+                <option value="{{ current_source }}" {{ 'selected' if current_source == source }}>{{ current_source.upper() }}</option>
+                {% endfor %}
+            </select>
             <input class="btn btn-primary" type="submit" value="Change">
         </div>
     </form>
