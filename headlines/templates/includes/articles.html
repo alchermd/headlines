@@ -2,9 +2,7 @@
     {% for article in articles %}
         <div class="col-md-4 text-center">
             <div class="card">
-                {% if article.urlToImage %}
-                <img class="card-img-top img-fluid" src="{{ article.urlToImage }}" alt="{{ article.description }}"> 
-                {% endif %}
+                <img class="card-img-top img-fluid article-image" src="{{ article.urlToImage or url_for('static', filename='img/no_image_available.png') }}" alt="{{ article.description }}">
                 <div class="card-body">
                     <p><strong>{{ article.title or 'No Title' }}</strong></p>
                     <p><em>{{ article.publishedAt  or 'No Publishing Date' }}</em> </p>
