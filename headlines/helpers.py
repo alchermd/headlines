@@ -98,12 +98,13 @@ def get_value(key) -> str:
         return request.cookies.get(key) or DEFAULTS[key]
 
 
-def get_sources() -> list:
+def get_sources() -> dict:
     """ Loads and parses all the news sources provided by
     the NewsAPI.org API.
 
     Returns:
-        list: A list of all the news sources.
+        dict: A dictionary of all the news sources where the
+            key and value are the same.
     """
     # Load sources data.
     api_url = f"https://newsapi.org/v1/sources"
@@ -111,5 +112,5 @@ def get_sources() -> list:
     parsed = json.loads(all_sources).get("sources")
 
     # Parse sources.
-    sources = [item["id"] for item in parsed]
+    sources = {source["id"]:source["id"] for source in parsed}
     return sources

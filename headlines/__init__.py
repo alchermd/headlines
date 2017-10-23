@@ -16,7 +16,7 @@ app.config.from_pyfile("appconfig.py")
 
 from .helpers import get_sources
 
-SOURCES = {source:source for source in get_sources()}
+SOURCES = get_sources()
 
 DEFAULTS = {
     "source": "bbc-news",
