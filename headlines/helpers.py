@@ -1,6 +1,6 @@
 import json
 import requests
-from . import SOURCES, DEFAULTS, app
+from . import app
 from flask import request
 from urllib.request import quote, urlopen
 
@@ -14,6 +14,8 @@ def get_news(source) -> list:
     Returns:
         list: A list of news articles.
     """
+    from . import DEFAULTS, SOURCES
+
     # Determine fallback values.
     if source is None or source not in SOURCES.keys():
         source = DEFAULTS["source"]
@@ -88,7 +90,26 @@ def get_value(key) -> str:
     Returns:
         str: The determined result to be used.
     """
+    from . import DEFAULTS
+
     if request.args.get(key):
         return request.args.get(key)
     else:
         return request.cookies.get(key) or DEFAULTS[key]
+
+
+def get_sources() -> list:
+    """ Loads and parses all the news sources provided by
+    the NewsAPI.org API.
+
+    Returns:
+        list: A list of all the news sources.
+    """
+    # Load sources data.
+    api_url = f"https://newsapi.org/v1/sources"
+    all_sources = urlopen(api_url).read()
+    parsed = json.loads(all_sources).get("sources")
+
+    # Parse sources.
+    sources = [item["id"] for item in parsed]
+    return sources

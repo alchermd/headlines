@@ -10,18 +10,16 @@
 """
 from flask import Flask
 
-
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_pyfile("appconfig.py")
 
-SOURCES = {
-    "bbc": "bbc-news",
-    "cnn": "cnn",
-    "hackernews": "hacker-news"
-}
+
+from .helpers import get_sources
+
+SOURCES = {source:source for source in get_sources()}
 
 DEFAULTS = {
-    "source": "bbc",
+    "source": "bbc-news",
     "city": "Malolos",
     "currency_from": "USD",
     "currency_to": "PHP"
