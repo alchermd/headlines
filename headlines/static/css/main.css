@@ -1,4 +1,9 @@
 .col-md-4 .card {
-    height: 600px;
+    min-height: 650px;
     margin-bottom: 100px;
+}
+
+.article-image {
+    min-height: 300px;
+    max-height: 350px;
 }
