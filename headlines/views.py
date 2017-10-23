@@ -1,5 +1,5 @@
 import datetime
-from . import app
+from . import SOURCES, app
 from .helpers import *
 from flask import render_template, make_response
 
@@ -23,7 +23,8 @@ def index():
     response = make_response(render_template("index.html", articles=articles,
                            source=source, weather=weather,
                            currency_from=currency_from, currency_to=currency_to,
-                           rate=rate, currencies=currencies))
+                           rate=rate, currencies=currencies,
+                           SOURCES=SOURCES))
 
     expires= datetime.datetime.now() + datetime.timedelta(days=365)
     response.set_cookie("source", source, expires=expires)
