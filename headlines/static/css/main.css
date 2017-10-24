@@ -31,3 +31,8 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
     font-weight: bolder;
 }
+
+.navbar {
+    letter-spacing: 1.5px;
+    background-color: #141d27;
+}
