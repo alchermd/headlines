@@ -34,3 +34,12 @@ def index():
 
     return response
 
+
+@app.route("/code")
+def code():
+    pass
+
+
+@app.route("/about")
+def about():
+    pass
