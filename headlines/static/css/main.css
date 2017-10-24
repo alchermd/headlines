@@ -1,11 +1,18 @@
+body {
+    background-color: #eaf1f1;
+}
+
 .col-md-4 .card {
     min-height: 650px;
     margin-bottom: 100px;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    border-radius: 5%;
 }
 
 .article-image {
     min-height: 300px;
     max-height: 350px;
+    border-radius: 5%;
 }
 
 .jumbotron {
