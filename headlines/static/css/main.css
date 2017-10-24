@@ -8,6 +8,11 @@
     max-height: 350px;
 }
 
+.jumbotron {
+    color: white;
+    background-color: #141d27;
+}
+
 h1 {
     font-weight: bolder;
 }
