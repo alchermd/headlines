@@ -1,5 +1,12 @@
 body {
     background-color: #eaf1f1;
+    font-family: 'Istok Web', sans-serif;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lora', serif;
+    letter-spacing: 2px;
 }
 
 .col-md-4 .card {
@@ -13,6 +20,7 @@ body {
     min-height: 300px;
     max-height: 350px;
     border-radius: 5%;
+    margin-bottom: 20px;
 }
 
 .jumbotron {
