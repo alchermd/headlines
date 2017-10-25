@@ -1,5 +1,6 @@
 import json
 import requests
+import smtplib
 from . import app
 from flask import request
 from urllib.request import quote, urlopen
@@ -114,3 +115,31 @@ def get_sources() -> dict:
     # Parse sources.
     sources = {source["id"]:source["id"] for source in parsed}
     return sources
+
+
+def send_email(reply_to: str, message: str):
+    """ Sends an email to the configured recepient.
+
+    Args:
+        reply_to: the email address to reply to.
+        message: the message of the email to be sent.
+    """
+    body = "\r\n".join([
+        f"From: {reply_to}",
+        f"To: {app.config['MY_EMAIL']}",
+        "Subject: Headlines App Message",
+        "",
+        f"From:{reply_to} \n{message}"
+    ])
+
+    # Start an SMPT server and connect it to Gmail.
+    mail = smtplib.SMTP('smtp.gmail.com', 587)
+    mail.ehlo()
+
+    # Start a TSL session to login email credentials.
+    mail.starttls()
+    mail.login(app.config['MY_EMAIL'], app.config['MY_EMAIL_PASSWORD'])
+
+    # Send the message and close the server.
+    mail.sendmail(app.config['MY_EMAIL'], app.config['MY_EMAIL'], body)
+    mail.close()
