@@ -1,5 +1,6 @@
 import datetime
 from . import SOURCES, app
+from .forms import EmailForm
 from .helpers import *
 from flask import render_template, make_response
 
@@ -35,7 +36,10 @@ def index():
     return response
 
 
-@app.route("/code")
+@app.route("/code", methods=["GET", "POST"])
 def code():
     """ The code page. """
-    return render_template("code.html")
+    form = EmailForm()
+    if form.validate_on_submit():
+        pass
+    return render_template("code.html", form=form)
