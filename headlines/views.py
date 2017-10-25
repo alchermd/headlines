@@ -1,8 +1,9 @@
 import datetime
+import smtplib
 from . import SOURCES, app
 from .forms import EmailForm
 from .helpers import *
-from flask import render_template, make_response
+from flask import flash, make_response, redirect, render_template, url_for
 
 
 @app.route("/")
@@ -41,5 +42,27 @@ def code():
     """ The code page. """
     form = EmailForm()
     if form.validate_on_submit():
-        pass
+        body = "\r\n".join([
+            f"From: {form.reply_to.data}",
+            f"To: {app.config['MY_EMAIL']}",
+            "Subject: Headlines App Message",
+            "",
+            f"From:{form.reply_to.data} \n{form.message.data}"
+        ])
+
+        # Start an SMPT server and connect it to Gmail.
+        mail = smtplib.SMTP('smtp.gmail.com', 587)
+        mail.ehlo()
+
+        # Start a TSL session to login email credentials.
+        mail.starttls()
+        mail.login(app.config['MY_EMAIL'], app.config['MY_EMAIL_PASSWORD'])
+
+        # Send the message and close the server.
+        mail.sendmail(app.config['MY_EMAIL'], app.config['MY_EMAIL'], body)
+        mail.close()
+
+        flash("Email Sent!")
+        return redirect(url_for('code'))
+    
     return render_template("code.html", form=form)
