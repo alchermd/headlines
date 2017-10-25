@@ -40,10 +40,10 @@
 
 <hr>
 
-<div class="container text-center">
+<div class="container">
     <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <h2><span class="fa fa-info-circle"></span> More Information</h2>
+        <div class="col-md-6">
+            <h2 class="text-center"><span class="fa fa-info-circle"></span> More Information</h2>
             <p class="text-justify">
                 This application is inspired by the <strong>headlines</strong> project from the book <a href="https://www.packtpub.com/web-development/flask-example" target="_blank">Flask by Example</a>. The application is hosted in <a href="https://www.pythonanywhere.com" target="_blank">Python Anywhere</a>, in which they are generous enough to provide a free tier of their services. With the limitations imposed by the <a href="https://www.pythonanywhere.com/whitelist/">free tier</a> account, the RSS feeds used in the book was replaced with external APIs that are fetched through the <code>requests</code> and <code>urllib</code> libraries.
             </p>
@@ -51,6 +51,11 @@
             <p class="text-justify">
                 Note that this application is under continuous development. That means that features and fixes are added from time to time, so be sure to check back for updates. Or better yet, contribute your thoughts at the project's <a href="https://www.github.com/alchermd/headlines" target="_blank">Github Repository</a>.
             </p>
+        </div>
+        
+        <div class="col-md-6">
+            <h2 class="text-center"><span class="fa fa-envelope"></span> Send me a Message</h2>
+            {% include "includes/email_form.html" %}
         </div>
     </div>
 </div>
