@@ -2,6 +2,7 @@ body {
     background-color: #eaf1f1;
     font-family: 'Istok Web', sans-serif;
     line-height: 1.6;
+    padding-top: 50px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -9,7 +10,7 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 2px;
 }
 
-.col-md-4 .card {
+.card {
     min-height: 650px;
     margin-bottom: 100px;
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
