@@ -49,9 +49,9 @@ h1 {
     margin: 30px;
 }
 
-@media (max-width: 600px) {
-    .jumbotron .col-md-4 {
-        margin-bottom: 30px;
+@media (max-width: 990px) {
+    .col-md-4, .col-lg-4 {
+        margin-bottom: 100px;
     }
 }
 
