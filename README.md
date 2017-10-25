@@ -33,6 +33,12 @@ $ cd headlines
     # API key from https://openexchangerates.org/
     RATES_API_KEY = "yourapikey"
 
+    # Gmail address used to recieve emails from the /code endpoint.
+    MY_EMAIL = "youremail@gmail.com"
+
+    # Your Gmail password
+    MY_EMAIL_PASSWORD = "hunter2"
+
     # Secret key used by the Flask app.
     SECRET_KEY = "really hard to guess string"
     ```
