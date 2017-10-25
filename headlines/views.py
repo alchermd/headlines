@@ -37,9 +37,11 @@ def index():
 
 @app.route("/code")
 def code():
-    pass
+    """ The code page. """
+    return render_template("code.html")
 
 
 @app.route("/about")
 def about():
-    pass
+    """ The about page. """
+    return render_template("about.html")
