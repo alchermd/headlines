@@ -24,9 +24,9 @@ SOURCES = get_sources()
 
 DEFAULTS = {
     "source": "bbc-news",
-    "city": "Malolos",
+    "city": "New York",
     "currency_from": "USD",
-    "currency_to": "PHP"
+    "currency_to": "EUR"
 }
 
 # Another ciruclar import.
