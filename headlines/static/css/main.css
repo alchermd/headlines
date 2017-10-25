@@ -70,3 +70,7 @@ hr {
     margin-top: 75px;
     margin-bottom: 75px;
 }
+
+textarea {
+    height: 200px;
+}
