@@ -36,3 +36,7 @@ h1 {
     letter-spacing: 1.5px;
     background-color: #141d27;
 }
+
+.navbar-toggler-icon {
+    color: white;
+}
