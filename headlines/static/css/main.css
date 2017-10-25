@@ -43,8 +43,21 @@ h1 {
     color: white;
 }
 
+.text-justify {
+    text-align-last: center;
+}
+
 @media (max-width: 600px) {
     .jumbotron .col-md-4 {
         margin-bottom: 30px;
     }
+}
+
+footer.navbar {
+    margin-top: 30px;    
+    background-color: #4E5D6C;
+    padding-top: 30px;
+    font-size: 18px;
+    color: white;
+    font-family: 'Lora', serif;
 }
