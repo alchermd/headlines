@@ -45,6 +45,7 @@ h1 {
 
 .text-justify {
     text-align-last: center;
+    margin: 30px;
 }
 
 @media (max-width: 600px) {
