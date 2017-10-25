@@ -42,3 +42,9 @@ h1 {
 .navbar-toggler-icon {
     color: white;
 }
+
+@media (max-width: 600px) {
+    .jumbotron .col-md-4 {
+        margin-bottom: 30px;
+    }
+}
