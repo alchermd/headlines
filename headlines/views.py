@@ -40,6 +40,7 @@ def index():
 def code():
     """ The code page. """
     form = EmailForm()
+    form_errors = None
     if form.validate_on_submit():
         # Send the email.
         send_email(form.reply_to.data, form.message.data)
@@ -48,4 +49,7 @@ def code():
         flash("Email Sent!", "success")
         return redirect(url_for('code'))
     
-    return render_template("code.html", form=form)
+    else:
+        form_errors = form.errors
+    
+    return render_template("code.html", form=form, form_errors=form_errors)
