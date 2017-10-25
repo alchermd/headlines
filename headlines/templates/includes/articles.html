@@ -1,6 +1,6 @@
 <div class="row align-items-center">
     {% for article in articles %}
-        <div class="col-md-4 text-center">
+        <div class="col-lg-4 col-md-6 text-center">
             <div class="card">
                 <img class="card-img-top img-fluid article-image" src="{{ article.urlToImage or url_for('static', filename='img/no_image_available.png') }}">
                 <div class="card-body">
